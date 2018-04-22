@@ -25,7 +25,7 @@ function addNumbers(){
     //console.log('new math problem', addNumbers);
     $.ajax({
         type: 'POST',
-        url: '/modules/additionCollection',
+        url: '/additionCollection',
         data: addNumbers
     })
     .then(function(response){
