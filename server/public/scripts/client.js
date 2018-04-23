@@ -154,3 +154,8 @@ function requestDivision(){
         $('#calcHistory').prepend('<p>' + 'x' + '/' + 'y' + '=' + 'sum' + '</p>');
     })
 }
+
+$('#calcHistory').on('click', '#clearButton' , function(){
+    $(this).parent().remove();
+});
+
