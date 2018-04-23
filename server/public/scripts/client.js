@@ -6,8 +6,8 @@ function onReady(){
     console.log('jQuery is loaded');
     $('#addButton').on('click', addNumbers);
     $('#subtractButton').on('click', subtractNumbers);
-    // $('#multiplyButton').on('click', multiplyNumbers);
-    // $('#divideButton').on('click', divideNumbers);
+    $('#multiplyButton').on('click', multiplyNumbers);
+    $('#divideButton').on('click', divideNumbers);
 
 }
 
@@ -53,7 +53,7 @@ function requestAddition(){
 //Subtraction Section
 function subtractNumbers(){
     console.log('Subtract button clicked');
-    const subtionCollection = {
+    const subtractionCollection = {
         x: ($('#firstInput').val()),
         y: ($('#secondInput').val()),
         type: 'Subtract'
@@ -82,5 +82,75 @@ function requestSubtraction(){
         let sum=x-y;
         $('#calcHistory').empty();
         $('#calcHistory').prepend('<p>' + 'x' + '-' + 'y' + '=' + 'sum' + '</p>');
+    })
+}
+
+//Multiplication Section
+function multiplyNumbers(){
+    console.log('Multiply button clicked');
+    const multiplicationCollection = {
+        x: ($('#firstInput').val()),
+        y: ($('#secondInput').val()),
+        type: 'Multiply'
+    }
+    console.log('new math problem', multiplyNumbers);
+    $.ajax({
+        type: 'POST',
+        url: '/multiplication',
+        data: multiplyNumbers
+    })
+    .then(function(response){
+        console.log(response);
+
+    });
+}
+
+function requestMultiplication(){
+    $.ajax({
+        type: 'GET',
+        url: '/request-multiplication',
+    })
+    .then(function(response){
+        console.log(response);
+        let x=number($('#firstInput').val());
+        let y=number($('#secondInput').val())
+        let sum=x*y;
+        $('#calcHistory').empty();
+        $('#calcHistory').prepend('<p>' + 'x' + '*' + 'y' + '=' + 'sum' + '</p>');
+    })
+}
+
+//Division Section
+function divideNumbers(){
+    console.log('Divide button clicked');
+    const divisionCollection = {
+        x: ($('#firstInput').val()),
+        y: ($('#secondInput').val()),
+        type: 'Divide'
+    }
+    console.log('new math problem', divideNumbers);
+    $.ajax({
+        type: 'POST',
+        url: '/division',
+        data: divideNumbers
+    })
+    .then(function(response){
+        console.log(response);
+
+    });
+}
+
+function requestDivision(){
+    $.ajax({
+        type: 'GET',
+        url: '/request-division',
+    })
+    .then(function(response){
+        console.log(response);
+        let x=number($('#firstInput').val());
+        let y=number($('#secondInput').val())
+        let sum=x/y;
+        $('#calcHistory').empty();
+        $('#calcHistory').prepend('<p>' + 'x' + '/' + 'y' + '=' + 'sum' + '</p>');
     })
 }

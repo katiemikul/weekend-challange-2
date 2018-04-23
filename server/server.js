@@ -29,7 +29,26 @@ app.get('/request-subtraction', (req, res) => {
 })
 
 //Multiplication Section
+app.post('/multiplication', (req, res) => {
+    console.log(req.body);
+    multiplicationCollection.push(req.body);
+    res.sendStatus(200);
+})
 
+app.get('/request-multiplication', (req, res) => {
+    res.send(multiplicationCollection);
+})
+
+//Division Section
+app.post('/division', (req, res) => {
+    console.log(req.body);
+    divisionCollection.push(req.body);
+    res.sendStatus(200);
+})
+
+app.get('/request-division', (req, res) => {
+    res.send(divisionCollection);
+})
 
 app.listen(PORT, () => {
     console.log(`listening on port: ${PORT}`)
